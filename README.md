@@ -4,7 +4,9 @@ This marketplace provides a Codex plugin for the DataProduct MCP server.
 
 ## Configuration
 
-### Windows guided setup
+### Guided setup
+
+Windows PowerShell:
 
 After installing the plugin, open PowerShell in the installed plugin folder and run:
 
@@ -12,9 +14,18 @@ After installing the plugin, open PowerShell in the installed plugin folder and 
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-windows.ps1
 ```
 
-The script asks for the DataProduct MCP URL and securely hides the bearer token
-while it is typed. It stores both values as environment variables for the current
-Windows user. Fully quit and reopen Codex after setup.
+macOS or Linux:
+
+```bash
+chmod +x ./scripts/setup-macos-linux.sh
+./scripts/setup-macos-linux.sh
+```
+
+Both scripts ask for the DataProduct MCP URL and hide the bearer token while it
+is typed. The Windows script stores both values as user environment variables.
+The macOS/Linux script stores them in `~/.dataproduct-mcp.env` with permissions
+limited to the current user and loads that file from the user's shell profile.
+Fully quit and reopen Codex after setup.
 
 Codex marketplace manifests do not currently support custom URL and bearer-token
 fields inside the Install dialog, so this guided setup runs immediately after
