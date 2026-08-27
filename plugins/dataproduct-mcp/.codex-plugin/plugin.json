@@ -1,6 +1,6 @@
 {
   "name": "dataproduct-mcp",
-  "version": "0.1.0",
+  "version": "0.1.0+codex.20260827061611",
   "description": "Connect Codex to the DataProduct MCP server.",
   "author": {
     "name": "Akshayram11",
@@ -8,7 +8,11 @@
   },
   "repository": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
   "license": "MIT",
-  "keywords": ["dataos", "dataproduct", "mcp"],
+  "keywords": [
+    "dataos",
+    "dataproduct",
+    "mcp"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Dataproduct Mcp",
@@ -16,7 +20,9 @@
     "longDescription": "Connect to a configurable DataProduct MCP endpoint using environment variables.",
     "developerName": "Akshayram11",
     "category": "Developer Tools",
-    "capabilities": ["Interactive"],
+    "capabilities": [
+      "Interactive"
+    ],
     "defaultPrompt": [
       "Explore available DataProduct tools",
       "Help me query the DataProduct MCP server"
