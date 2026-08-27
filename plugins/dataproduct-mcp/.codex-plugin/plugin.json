@@ -1,6 +1,6 @@
 {
   "name": "dataproduct-mcp",
-  "version": "0.1.0+codex.20260827061748",
+  "version": "0.1.0+codex.20260827062049",
   "description": "Connect Codex to the DataProduct MCP server.",
   "author": {
     "name": "Akshayram11",
@@ -13,7 +13,6 @@
     "dataproduct",
     "mcp"
   ],
-  "skills": "./skills/",
   "interface": {
     "displayName": "Dataproduct Mcp",
     "shortDescription": "Use DataProduct MCP in Codex.",

@@ -22,6 +22,11 @@ try {
 
     $env:DATAPRODUCT_MCP_URL = $mcpUrl
     $env:DATAPRODUCT_MCP_TOKEN = $token.Trim()
+
+    $mcpConfigPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\.mcp.json"))
+    $mcpConfig = Get-Content -Raw -Path $mcpConfigPath | ConvertFrom-Json
+    $mcpConfig.mcpServers.'dataproduct-mcp'.url = $mcpUrl
+    $mcpConfig | ConvertTo-Json -Depth 10 | Set-Content -Encoding UTF8 -Path $mcpConfigPath
 }
 finally {
     [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($tokenPointer)
@@ -29,4 +34,5 @@ finally {
 }
 
 Write-Host "DataProduct MCP configuration saved for the current Windows user."
+Write-Host "MCP endpoint updated in $mcpConfigPath."
 Write-Host "Fully quit and reopen Codex, then enable the dataproduct-mcp plugin."

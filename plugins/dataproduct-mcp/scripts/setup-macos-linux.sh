@@ -43,6 +43,12 @@ umask 077
 } > "$config_file"
 chmod 600 "$config_file"
 
+mcp_file=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)/.mcp.json
+escaped_json_url=$(printf '%s' "$mcp_url" | sed 's/[\/&]/\\&/g')
+temporary_mcp_file="$mcp_file.tmp.$$"
+sed "s/\"url\": \"[^\"]*\"/\"url\": \"$escaped_json_url\"/" "$mcp_file" > "$temporary_mcp_file"
+mv "$temporary_mcp_file" "$mcp_file"
+
 shell_name=$(basename "${SHELL:-sh}")
 case "$shell_name" in
   zsh) profile_file="$HOME/.zshrc" ;;
@@ -61,4 +67,5 @@ if command -v launchctl >/dev/null 2>&1; then
 fi
 
 printf '%s\n' "DataProduct MCP configuration saved in $config_file."
+printf '%s\n' "MCP endpoint updated in $mcp_file."
 printf '%s\n' "Fully quit and reopen Codex before using the plugin."

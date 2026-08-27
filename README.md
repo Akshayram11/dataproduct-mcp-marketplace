@@ -25,6 +25,8 @@ Both scripts ask for the DataProduct MCP URL and hide the bearer token while it
 is typed. The Windows script stores both values as user environment variables.
 The macOS/Linux script stores them in `~/.dataproduct-mcp.env` with permissions
 limited to the current user and loads that file from the user's shell profile.
+Each script also writes the selected endpoint into the installed `.mcp.json`;
+the bearer token is never written into the plugin files or Git repository.
 Fully quit and reopen Codex after setup.
 
 Codex marketplace manifests do not currently support custom URL and bearer-token
