@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "dataproduct-mcp": {
+      "type": "http",
+      "url": "${DATAPRODUCT_MCP_URL}",
+      "headers": {
+        "Authorization": "Bearer ${DATAPRODUCT_MCP_TOKEN}"
+      }
+    }
+  }
+}
