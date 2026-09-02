@@ -1,7 +1,7 @@
 {
   "name": "dataproduct-mcp-11",
   "displayName": "DataProduct MCP",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Connect Cursor to a user-selected DataOS DataProduct MCP instance through OAuth.",
   "author": {
     "name": "Akshayram11"
@@ -15,8 +15,8 @@
     "properties": {
       "DATAOS_INSTANCE_FQDN": {
         "type": "string",
-        "title": "Instance URL",
-        "description": "Required instance URL hostname only, for example your-instance.instance.dataos.cloud",
+        "title": "DataOS instance FQDN",
+        "description": "Hostname only, for example qaiks-070226.instance.dataos.cloud. Do not include https:// or /mcp/api/v1. Cursor builds https://<fqdn>/mcp/api/v1",
         "minLength": 1
       }
     },

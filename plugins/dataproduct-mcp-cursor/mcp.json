@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "dataproduct-mcp-11": {
-      "url": "${{DATAOS_INSTANCE_FQDN}}"
+      "url": "https://${DATAOS_INSTANCE_FQDN}/mcp/api/v1"
     }
   }
 }
