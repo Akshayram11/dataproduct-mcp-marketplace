@@ -83,11 +83,23 @@ The Codex plugin lives at [`plugins/codex`](plugins/codex). Codex looks for
    Do not use only `plugins/codex`. That checkout has no marketplace manifest
    at the root, so Codex shows `marketplace root does not contain a supported manifest`.
 4. Click **Add marketplace**.
-5. Install **DataProduct MCP**. Auth policy is `ON_INSTALL` (OAuth, no bearer token).
-6. The agent shows one example hostname (`qaiks-070226.instance.dataos.cloud`).
-   Do not include `https://` or `/mcp/api/v1`.
-7. Save that hostname on the plugin, enable **dataproduct-mcp** if it is
-   disabled, then complete OAuth in the browser Codex opens.
+5. Install **DataProduct MCP**. The plugin page has no hostname edit field.
+   The gear next to **Dataproduct-mcp** does not change the instance URL.
+6. Add your instance in **Settings → MCP servers → Add server**:
+   - Type: Streamable HTTP
+   - URL: `https://your-instance.instance.dataos.cloud/mcp/api/v1`
+   - Example hostname: `qaiks-070226.instance.dataos.cloud`
+     (no `https://` in the hostname; the URL includes the path)
+   - Save, then Restart
+7. Click **Authenticate** on that server, or run
+   `codex mcp login dataproduct-mcp`. Finish login in the browser.
+
+   CLI alternative:
+
+   ```bash
+   codex mcp add dataproduct-mcp --url https://your-instance.instance.dataos.cloud/mcp/api/v1
+   codex mcp login dataproduct-mcp
+   ```
 
 Codex uses [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
 and [`plugins/codex/.codex-plugin/plugin.json`](plugins/codex/.codex-plugin/plugin.json).
