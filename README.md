@@ -25,10 +25,10 @@ This repository is a Cursor marketplace plus an optional install page.
 
 3. Keep **Scope** as **User** and click **Import**.
 4. Open **dataproduct-mcp**, click **Add** / **Install**.
-5. In Agent chat, run `/add-plugin dataproduct-mcp@https://github.com/Akshayram11/dataproduct-mcp-marketplace`
-   if you are installing from the command. The agent asks for your
-   instance FQDN in chat, then you save it in **Configure** and complete
-   OAuth in that same chat until MCP is running.
+5. In Agent chat you can also run
+   `/add-plugin dataproduct-mcp@https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
+   The agent guides you to save the instance FQDN in **Configure**, then
+   starts OAuth after you confirm it is saved.
 6. FQDN is hostname only, for example
    `your-instance.instance.dataos.cloud`. Do not include `https://` or
    `/mcp/api/v1`.

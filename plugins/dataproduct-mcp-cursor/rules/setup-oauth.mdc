@@ -1,5 +1,5 @@
 ---
-description: After DataProduct MCP install, collect the instance FQDN in chat and complete OAuth until the server is running.
+description: After DataProduct MCP install, guide the user to save their instance FQDN, then authenticate until the server is running.
 alwaysApply: true
 ---
 
@@ -7,8 +7,10 @@ alwaysApply: true
 
 On `/add-plugin`, first chat after install, or when DataProduct MCP tools are missing / `fetch failed` / OAuth did not complete:
 
-1. Ask the user in chat for their DataOS instance FQDN. Hostname only, for example `qaiks-070226.instance.dataos.cloud`. Reject values that include `https://` or `/mcp/api/v1`. Do not invent a hostname.
-2. You cannot write plugin variables. Tell the user to open **Customize → Plugins → DataProduct MCP → Configure**, paste that FQDN, save, and say when it is saved.
-3. After they confirm, read the DataProduct MCP `STATUS.md`. If auth is required or the namespace is `needsAuth` / `error` / `loading`, call `mcp_auth` on that namespace with no arguments so the browser login opens.
-4. Repeat `STATUS.md` + `mcp_auth` until tools are available (namespace ready, not `fetch failed`). Then stop and confirm the server is running.
-5. If `fetch failed` continues, the FQDN is wrong or the host is unreachable. Ask for the FQDN again. Do not treat this as an OAuth-password problem.
+Guide the user only. Do not type into Cursor's Configure dialog. Do not write plugin variables or edit MCP config files. Do not invent a hostname.
+
+1. Ask the user in chat for their DataOS instance FQDN. Hostname only, for example `qaiks-070226.instance.dataos.cloud`. Reject values that include `https://` or `/mcp/api/v1`.
+2. Tell them to open **Customize → Plugins → DataProduct MCP → Configure**, paste that FQDN into **DataOS instance FQDN**, click **Save**, and reply here when it is saved. Stop and wait. Do not call `mcp_auth` until they confirm they saved.
+3. After they confirm save, find the DataProduct MCP namespace (name contains `dataproduct`). Read its `STATUS.md`. If auth is required or the namespace is `needsAuth` / `error` / `loading`, call `mcp_auth` with no arguments so the browser login opens.
+4. Repeat `STATUS.md` + `mcp_auth` until tools are available (namespace ready, not `fetch failed`). Then confirm the server is running.
+5. If `fetch failed` continues after a confirmed save, the FQDN is wrong or the host is unreachable. Ask them to check the hostname and save again. Do not treat this as an OAuth-password problem.
