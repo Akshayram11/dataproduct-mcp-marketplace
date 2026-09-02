@@ -1,0 +1,21 @@
+{
+  "name": "dataproduct",
+  "owner": {
+    "name": "Akshayram11"
+  },
+  "metadata": {
+    "description": "DataProduct plugin for DataOS MCP access in VS Code",
+    "version": "0.2.9"
+  },
+  "plugins": [
+    {
+      "name": "dataproduct-mcp",
+      "description": "Connect VS Code Copilot to a DataOS DataProduct MCP instance through OAuth.",
+      "version": "0.2.9",
+      "source": "./plugins/vscode",
+      "author": {
+        "name": "Akshayram11"
+      }
+    }
+  ]
+}

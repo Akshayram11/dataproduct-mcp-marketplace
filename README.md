@@ -95,3 +95,42 @@ The Codex plugin lives at [`plugins/codex`](plugins/codex). Codex looks for
 Codex uses [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
 and [`plugins/codex/.codex-plugin/plugin.json`](plugins/codex/.codex-plugin/plugin.json).
 The MCP URL is `https://<hostname>/mcp/api/v1`.
+
+## VS Code (GitHub Copilot Agent Plugins)
+
+VS Code does not read the Cursor or Codex marketplace files. It uses
+[`.github/plugin/marketplace.json`](.github/plugin/marketplace.json).
+
+1. Install [VS Code](https://code.visualstudio.com/) and sign in to GitHub Copilot.
+2. Enable agent plugins. In **Settings**, turn on `chat.plugins.enabled`, or add
+   this to user `settings.json`:
+
+   ```json
+   {
+     "chat.plugins.enabled": true,
+     "chat.plugins.marketplaces": [
+       "Akshayram11/dataproduct-mcp-marketplace"
+     ]
+   }
+   ```
+
+3. Reload VS Code.
+4. Open **Extensions** (`Cmd+Shift+X`), search `@agentPlugins`, find
+   **dataproduct-mcp**, and install it. First install from this marketplace
+   shows a trust prompt.
+5. In Agent chat, send your DataOS hostname only, for example
+   `qaiks-070226.instance.dataos.cloud`.
+6. Add the MCP URL:
+   **Command Palette → MCP: Add Server → HTTP**
+   `https://<hostname>/mcp/api/v1`
+   Then start the server and complete **Authenticate** if VS Code shows it.
+
+You can also install from source: **Chat: Install Plugin From Source** and
+paste `https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
+
+Copilot CLI:
+
+```bash
+copilot plugin marketplace browse Akshayram11/dataproduct-mcp-marketplace
+copilot plugin install dataproduct-mcp@dataproduct
+```

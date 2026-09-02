@@ -1,0 +1,10 @@
+{
+  "name": "dataproduct-mcp",
+  "version": "0.2.9",
+  "description": "Connect VS Code to a user-selected DataOS DataProduct MCP instance through OAuth.",
+  "author": {
+    "name": "Akshayram11"
+  },
+  "license": "MIT",
+  "keywords": ["dataos", "dataproduct", "mcp", "oauth"]
+}
