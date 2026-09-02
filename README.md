@@ -88,7 +88,9 @@ The Codex plugin lives at [`plugins/codex`](plugins/codex). Codex looks for
 6. The agent must ask for the DataOS instance FQDN in chat (hostname only,
    for example `qaiks-070226.instance.dataos.cloud`).
 7. After you send it, the agent runs `codex mcp add` and `codex mcp login`.
-   Finish OAuth in the browser. The plugin card has no hostname edit field.
+   If CLI OAuth fails (`No authorization support detected`), click
+   **Plugins → MCPs → dataproduct-mcp → Authenticate** and finish login
+   in the browser.
 
 Codex uses [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
 and [`plugins/codex/.codex-plugin/plugin.json`](plugins/codex/.codex-plugin/plugin.json).
