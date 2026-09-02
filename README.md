@@ -1,131 +1,161 @@
 # DataProduct MCP
 
-Install the DataProduct MCP into Cursor against your own DataOS instance.
-The server is OAuth-based. Enter the instance URL, then complete the browser
-login. No bearer token is stored in this repository.
+Connect Cursor, Codex, or VS Code to your DataOS DataProduct MCP instance
+through OAuth. No bearer token is stored in this repository.
 
-After install, Cursor uses:
+The MCP URL is always:
 
-```json
-{
-  "dataproduct-mcp": {
-    "url": "https://YOUR-INSTANCE.instance.dataos.cloud/mcp/api/v1"
-  }
-}
+```text
+https://<hostname>/mcp/api/v1
 ```
 
-This repository is a Cursor marketplace plus an optional install page.
+You only type the **hostname**. Example:
 
-## Import in Cursor (Customize → + Add)
+```text
+qaiks-070226.instance.dataos.cloud
+```
+
+Do not include `https://` or `/mcp/api/v1`.
+
+---
+
+## Cursor
+
+Plugin: [`plugins/dataproduct-mcp-cursor`](plugins/dataproduct-mcp-cursor)
+Marketplace: [`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json)
+
+### Install from chat
+
+In Agent chat, paste this exactly (no markdown link):
+
+```text
+/add-plugin dataproduct-mcp@https://github.com/Akshayram11/dataproduct-mcp-marketplace
+```
+
+### Or import the marketplace
 
 1. Open **Customize → Plugins → + Add**.
-2. In **Import Marketplace**, paste this repository URL:
-
-   `https://github.com/Akshayram11/dataproduct-mcp-marketplace`
-
+2. Paste `https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
 3. Keep **Scope** as **User** and click **Import**.
-4. Open **dataproduct-mcp**, click **Add** / **Install**.
-5. In Agent chat you can also run
-   `/add-plugin dataproduct-mcp@https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
-   The agent shows one example hostname, guides you to save yours in
-   **Configure**, enable **dataproduct-mcp-11** on the same plugin page,
-   then starts OAuth from chat. Complete login in the browser that opens.
-   You do not need the MCP tab Authenticate button.
-6. FQDN is hostname only, for example
-   `your-instance.instance.dataos.cloud`. Do not include `https://` or
-   `/mcp/api/v1`.
+4. Open **dataproduct-mcp** and click **Add** / **Install**.
 
-## Add to Cursor (instance URL popup)
+### After install
 
-1. Open [`install.html`](install.html) in a browser.
-2. Enter your instance URL hostname only, for example:
+1. The agent shows the hostname example. It does not ask you to type the
+   URL in chat first.
+2. Open **Customize → Plugins → DataProduct MCP**.
+3. Click **Configure**, paste the hostname into **DataOS instance FQDN**,
+   click **Save**.
+4. On the same page, turn **dataproduct-mcp-11** from **Disabled** to
+   **Enabled**. A disabled MCP does not load in chat.
+5. Reply in chat that it is saved and enabled.
+6. The agent starts OAuth (`mcp_auth`). Finish login in the browser.
+   Do not use the MCP tab **Authenticate** button.
 
-   ```text
-   your-instance.instance.dataos.cloud
-   ```
+### Optional: install page
 
-3. Click **Add to Cursor**.
-4. Confirm the Cursor install prompt, then complete OAuth.
+1. Open [`install.html`](install.html).
+2. Enter the hostname only.
+3. Click **Add to Cursor** and complete OAuth.
 
-Do not include `https://` or `/mcp/api/v1`. The page builds
-`https://<instance-url>/mcp/api/v1`.
+---
 
-## Install the plugin locally
+## Codex
 
-If you want the plugin card (with **Configure → Instance URL**) instead
-of the install link:
+Plugin: [`plugins/codex`](plugins/codex)
+Marketplace: [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
 
-1. Copy this repository into `~/.cursor/plugins/local/dataproduct-mcp`.
-   Do not symlink out of that folder.
-2. Reload Cursor.
-3. Open **Customize**, find **DataProduct MCP**, click **Configure**, and save
-   the instance URL.
+### Install from chat
 
-Cursor does not auto-open that Configure dialog on Add. Use `install.html` when
-you want the instance URL prompt first.
+```text
+/add-plugin dataproduct-mcp@https://github.com/Akshayram11/dataproduct-mcp-marketplace
+```
 
-## Codex / ChatGPT (Add plugin marketplace)
+Or:
 
-The Codex plugin lives at [`plugins/codex`](plugins/codex). Codex looks for
-`.agents/plugins/marketplace.json` at the **marketplace root**, not only inside
-`plugins/codex`. In the **Add plugin marketplace** dialog:
+```bash
+codex plugin marketplace add https://github.com/Akshayram11/dataproduct-mcp-marketplace
+codex plugin add dataproduct-mcp@dataproduct
+```
+
+If an old `codex@dataproduct` install exists, remove it first so you get
+`dataproduct-mcp@dataproduct`.
+
+### Or Add plugin marketplace
 
 1. **Source:** `https://github.com/Akshayram11/dataproduct-mcp-marketplace`
-   or `Akshayram11/dataproduct-mcp-marketplace`
 2. **Git ref:** `main`
-3. **Sparse paths:** leave empty, **or** put both of these lines:
+3. **Sparse paths:** leave empty, or both of these lines:
 
    ```text
    .agents/plugins
    plugins/codex
    ```
 
-   Do not use only `plugins/codex`. That checkout has no marketplace manifest
-   at the root, so Codex shows `marketplace root does not contain a supported manifest`.
-4. Click **Add marketplace**.
-5. Install with `/add-plugin dataproduct-mcp@https://github.com/Akshayram11/dataproduct-mcp-marketplace`
-   or `codex plugin add dataproduct-mcp@dataproduct`.
-6. The agent must ask for the DataOS instance FQDN in chat (hostname only,
-   for example `qaiks-070226.instance.dataos.cloud`).
-7. After you send it, the agent runs `codex mcp add` and `codex mcp login`.
-   If CLI OAuth fails (`No authorization support detected`), click
-   **Plugins → MCPs → dataproduct-mcp → Authenticate** and finish login
-   in the browser.
+   Do not use only `plugins/codex`. That fails with
+   `marketplace root does not contain a supported manifest`.
+4. Click **Add marketplace**, then install **DataProduct MCP**.
 
-Codex uses [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
-and [`plugins/codex/.codex-plugin/plugin.json`](plugins/codex/.codex-plugin/plugin.json).
-The MCP URL is `https://<hostname>/mcp/api/v1`.
+### After install
 
-## VS Code (GitHub Copilot Agent Plugins)
+1. Start a new Codex task so the plugin loads.
+2. The agent asks for the hostname in chat. Reply with only:
 
-VS Code does not read the Cursor or Codex marketplace files. It uses
-[`.github/plugin/marketplace.json`](.github/plugin/marketplace.json).
-
-1. Install [VS Code](https://code.visualstudio.com/) and sign in to GitHub Copilot.
-2. Enable agent plugins. In **Settings**, turn on `chat.plugins.enabled`, or add
-   this to user `settings.json`:
-
-   ```json
-   {
-     "chat.plugins.enabled": true,
-     "chat.plugins.marketplaces": [
-       "Akshayram11/dataproduct-mcp-marketplace"
-     ]
-   }
+   ```text
+   qaiks-070226.instance.dataos.cloud
    ```
 
-3. Reload VS Code.
-4. Open **Extensions** (`Cmd+Shift+X`), search `@agentPlugins`, find
-   **dataproduct-mcp**, and install it. First install from this marketplace
-   shows a trust prompt.
-5. Open **Agent** chat. The plugin asks for your DataOS hostname only, for
-   example `qaiks-070226.instance.dataos.cloud`.
-6. After you send it, the agent adds the MCP with `code --add-mcp` (or writes
-   `.vscode/mcp.json`). Complete OAuth in the browser. If no browser opens,
-   use **MCP: List Servers → dataproduct-mcp → Authenticate**.
+3. The agent runs `codex mcp add` and `codex mcp login`.
+4. Finish login in the browser.
+5. If CLI OAuth fails (`No authorization support detected`), click
+   **Plugins → MCPs → Servers → dataproduct-mcp → Authenticate**.
+   The toggle must be on.
 
-You can also install from source: **Chat: Install Plugin From Source** and
-paste `https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
+The Codex plugin card has no hostname edit field. Do not use the gear
+next to **Dataproduct-mcp** to set the FQDN.
+
+---
+
+## VS Code (GitHub Copilot)
+
+Plugin: [`plugins/vscode`](plugins/vscode)
+Marketplace: [`.github/plugin/marketplace.json`](.github/plugin/marketplace.json)
+
+VS Code does not use `/add-plugin` and does not read the Cursor or Codex
+marketplace files. Do not open `vscode://` links in chat — that shows a
+blank page.
+
+### One-time settings
+
+Sign in to GitHub Copilot. In user `settings.json`:
+
+```json
+{
+  "chat.plugins.enabled": true,
+  "chat.plugins.marketplaces": [
+    "Akshayram11/dataproduct-mcp-marketplace"
+  ]
+}
+```
+
+Reload VS Code.
+
+### Install the plugin
+
+1. If an older **dataproduct-mcp** is installed, uninstall it first
+   (avoids the `DATAOS_INSTANCE_FQDN` start error).
+2. **Extensions** (`Cmd+Shift+X`) → search `@agentPlugins` →
+   **dataproduct-mcp** → **Install** → **Trust**.
+
+Or Command Palette:
+
+```text
+Chat: Install Plugin From Source
+```
+
+```text
+https://github.com/Akshayram11/dataproduct-mcp-marketplace
+```
 
 Copilot CLI:
 
@@ -133,3 +163,23 @@ Copilot CLI:
 copilot plugin marketplace browse Akshayram11/dataproduct-mcp-marketplace
 copilot plugin install dataproduct-mcp@dataproduct
 ```
+
+### After install
+
+1. Open a new **Agent** chat (mode must be **Agent**, not plain Chat).
+2. Type:
+
+   ```text
+   Connect DataProduct MCP
+   ```
+
+3. When asked, send only the hostname:
+
+   ```text
+   qaiks-070226.instance.dataos.cloud
+   ```
+
+4. The agent registers `https://<hostname>/mcp/api/v1`. Do not edit JSON
+   or click **Open Configuration**.
+5. Complete OAuth in the browser. If no browser opens:
+   **MCP: List Servers → dataproduct-mcp → Authenticate**.
