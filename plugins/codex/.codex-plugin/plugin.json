@@ -1,7 +1,7 @@
 {
-  "name": "codex",
-  "version": "0.2.7",
-  "description": "Connect Codex to a user-selected DataOS DataProduct MCP instance through OAuth.",
+  "name": "dataproduct-mcp",
+  "version": "0.2.8",
+  "description": "Connect Codex to a user-selected DataOS DataProduct MCP instance through OAuth. After install, ask for the instance FQDN in chat, then run codex mcp add and mcp login.",
   "author": {
     "name": "Akshayram11",
     "url": "https://github.com/Akshayram11"
@@ -19,7 +19,7 @@
   "interface": {
     "displayName": "DataProduct MCP",
     "shortDescription": "Use DataProduct MCP in Codex through OAuth.",
-    "longDescription": "Connect Codex to your DataOS DataProduct MCP instance. Add the MCP URL in Settings → MCP servers, then complete OAuth in the browser.",
+    "longDescription": "Connect Codex to your DataOS DataProduct MCP instance. After install, the agent asks for your hostname in chat, adds the MCP URL, then starts OAuth.",
     "developerName": "Akshayram11",
     "category": "Developer Tools",
     "capabilities": [
