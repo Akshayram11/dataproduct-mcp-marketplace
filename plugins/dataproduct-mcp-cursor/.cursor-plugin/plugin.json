@@ -9,12 +9,6 @@
   "homepage": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
   "repository": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
   "license": "MIT",
-  "keywords": [
-    "dataos",
-    "dataproduct",
-    "mcp",
-    "oauth"
-  ],
   "mcpServers": "mcp.json",
   "variables": {
     "type": "object",

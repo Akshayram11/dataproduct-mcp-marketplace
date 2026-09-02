@@ -1,0 +1,25 @@
+{
+  "name": "dataproduct",
+  "owner": {
+    "name": "Akshayram11"
+  },
+  "metadata": {
+    "description": "DataProduct plugin for DataOS MCP access",
+    "version": "0.2.0"
+  },
+  "plugins": [
+    {
+      "name": "dataproduct-mcp",
+      "source": "plugins/dataproduct-mcp-cursor",
+      "description": "Connect Cursor to a DataOS DataProduct MCP instance through OAuth.",
+      "version": "0.2.0",
+      "author": {
+        "name": "Akshayram11"
+      },
+      "repository": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
+      "license": "MIT",
+      "category": "Developer Tools",
+      "tags": ["dataos", "dataproduct", "mcp", "oauth"]
+    }
+  ]
+}

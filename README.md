@@ -14,8 +14,19 @@ After install, Cursor uses:
 }
 ```
 
-This repository is a **single Cursor plugin**, not a marketplace. The plugin
-manifest is [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json).
+This repository is a Cursor marketplace plus an optional install page.
+
+## Import in Cursor (Customize → + Add)
+
+1. Open **Customize → Plugins → + Add**.
+2. In **Import Marketplace**, paste this repository URL:
+
+   `https://github.com/Akshayram11/dataproduct-mcp-marketplace`
+
+3. Keep **Scope** as **User** and click **Import**.
+4. Open **dataproduct-mcp**, click **Add** / **Install**.
+5. In **Configure**, set **Instance URL** to your hostname, for example
+   `your-instance.instance.dataos.cloud`, then save and complete OAuth.
 
 ## Add to Cursor (instance URL popup)
 
