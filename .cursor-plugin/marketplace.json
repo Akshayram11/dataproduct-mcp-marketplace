@@ -4,15 +4,15 @@
     "name": "Akshayram11"
   },
   "metadata": {
-    "description": "DataProduct plugin for DataOS MCP access",
-    "version": "0.2.1"
+    "description": "DataProduct plugin for DataOS MCP access. After install, the agent asks for the instance FQDN in chat, then completes OAuth until MCP is running.",
+    "version": "0.2.2"
   },
   "plugins": [
     {
       "name": "dataproduct-mcp",
       "source": "plugins/dataproduct-mcp-cursor",
-      "description": "Connect Cursor to a DataOS DataProduct MCP instance through OAuth.",
-      "version": "0.2.1",
+      "description": "Connect Cursor to a DataOS DataProduct MCP instance through OAuth. After install, ask for the instance FQDN in chat, save it in Configure, then authenticate until MCP is running.",
+      "version": "0.2.2",
       "author": {
         "name": "Akshayram11"
       },

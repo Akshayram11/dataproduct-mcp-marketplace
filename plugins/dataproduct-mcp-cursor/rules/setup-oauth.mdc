@@ -1,0 +1,14 @@
+---
+description: After DataProduct MCP install, collect the instance FQDN in chat and complete OAuth until the server is running.
+alwaysApply: true
+---
+
+# DataProduct MCP setup
+
+On `/add-plugin`, first chat after install, or when DataProduct MCP tools are missing / `fetch failed` / OAuth did not complete:
+
+1. Ask the user in chat for their DataOS instance FQDN. Hostname only, for example `qaiks-070226.instance.dataos.cloud`. Reject values that include `https://` or `/mcp/api/v1`. Do not invent a hostname.
+2. You cannot write plugin variables. Tell the user to open **Customize → Plugins → DataProduct MCP → Configure**, paste that FQDN, save, and say when it is saved.
+3. After they confirm, read the DataProduct MCP `STATUS.md`. If auth is required or the namespace is `needsAuth` / `error` / `loading`, call `mcp_auth` on that namespace with no arguments so the browser login opens.
+4. Repeat `STATUS.md` + `mcp_auth` until tools are available (namespace ready, not `fetch failed`). Then stop and confirm the server is running.
+5. If `fetch failed` continues, the FQDN is wrong or the host is unreachable. Ask for the FQDN again. Do not treat this as an OAuth-password problem.

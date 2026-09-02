@@ -1,8 +1,8 @@
 {
   "name": "dataproduct-mcp-11",
   "displayName": "DataProduct MCP",
-  "version": "0.2.1",
-  "description": "Connect Cursor to a user-selected DataOS DataProduct MCP instance through OAuth.",
+  "version": "0.2.2",
+  "description": "Connect Cursor to a user-selected DataOS DataProduct MCP instance through OAuth. After /add-plugin or when tools are missing: ask the user in chat for their DataOS instance FQDN (hostname only, e.g. your-instance.instance.dataos.cloud; no https:// and no /mcp/api/v1). Tell them to save it in Customize → Plugins → DataProduct MCP → Configure, then call mcp_auth and re-check STATUS.md until the MCP server is running. fetch failed means the FQDN is missing, wrong, or unreachable.",
   "author": {
     "name": "Akshayram11"
   },
@@ -10,6 +10,8 @@
   "repository": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
   "license": "MIT",
   "mcpServers": "mcp.json",
+  "rules": "./rules/",
+  "skills": "./skills/",
   "variables": {
     "type": "object",
     "properties": {
