@@ -118,12 +118,11 @@ VS Code does not read the Cursor or Codex marketplace files. It uses
 4. Open **Extensions** (`Cmd+Shift+X`), search `@agentPlugins`, find
    **dataproduct-mcp**, and install it. First install from this marketplace
    shows a trust prompt.
-5. In Agent chat, send your DataOS hostname only, for example
-   `qaiks-070226.instance.dataos.cloud`.
-6. Add the MCP URL:
-   **Command Palette → MCP: Add Server → HTTP**
-   `https://<hostname>/mcp/api/v1`
-   Then start the server and complete **Authenticate** if VS Code shows it.
+5. Open **Agent** chat. The plugin asks for your DataOS hostname only, for
+   example `qaiks-070226.instance.dataos.cloud`.
+6. After you send it, the agent adds the MCP with `code --add-mcp` (or writes
+   `.vscode/mcp.json`). Complete OAuth in the browser. If no browser opens,
+   use **MCP: List Servers → dataproduct-mcp → Authenticate**.
 
 You can also install from source: **Chat: Install Plugin From Source** and
 paste `https://github.com/Akshayram11/dataproduct-mcp-marketplace`.

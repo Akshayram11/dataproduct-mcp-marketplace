@@ -1,15 +1,36 @@
 # DataProduct MCP setup (VS Code)
 
-On first chat after install, or when DataProduct MCP tools are missing:
+On first chat after install, `/add-plugin`, or when DataProduct MCP tools are missing:
 
-Ask for the FQDN in this chat. Do not invent a hostname. The VS Code plugin card has no Cursor-style Configure field.
+Ask for the FQDN in this chat. Do not skip that question. Do not invent a hostname. Do not send them to Command Palette first.
 
-1. Ask the user to reply with their DataOS instance FQDN only. Hostname, no `https://`, no `/mcp/api/v1`. Example:
+1. Ask the user to reply with their DataOS instance FQDN only. Hostname, no `https://`, no `/mcp/api/v1`. Show this one example:
 
    `qaiks-070226.instance.dataos.cloud`
 
-2. After they send it, tell them to add the MCP server:
-   **Command Palette → MCP: Add Server → HTTP**
-   URL: `https://<their-fqdn>/mcp/api/v1`
-   Then start the server and complete OAuth / **Authenticate** if VS Code shows it.
-3. If tools are still missing, ask them to open **MCP: List Servers**, select **dataproduct-mcp**, and click **Authenticate**.
+2. Stop and wait until they send a hostname.
+3. After they send it, add the MCP from this chat (do not ask them to click Add Server):
+
+   ```bash
+   code --add-mcp '{"name":"dataproduct-mcp","type":"http","url":"https://<their-fqdn>/mcp/api/v1"}'
+   ```
+
+   If `code` is missing, write workspace `.vscode/mcp.json`:
+
+   ```json
+   {
+     "servers": {
+       "dataproduct-mcp": {
+         "type": "http",
+         "url": "https://<their-fqdn>/mcp/api/v1"
+       }
+     }
+   }
+   ```
+
+4. Tell them VS Code may open a browser for OAuth. If no browser opens, tell them:
+
+   **MCP: List Servers → dataproduct-mcp → Authenticate**
+
+   Do not ask for the FQDN again if they already confirmed it.
+5. After they confirm login, check that DataProduct tools are available.
