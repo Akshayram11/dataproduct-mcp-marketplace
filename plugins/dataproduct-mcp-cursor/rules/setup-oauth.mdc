@@ -1,5 +1,5 @@
 ---
-description: After DataProduct MCP install, show one example hostname, guide the user to save it in Configure, then authenticate only after they confirm.
+description: After DataProduct MCP install, guide Configure save, then start OAuth from chat with mcp_auth. Never send the user to the MCP tab Authenticate button.
 alwaysApply: true
 ---
 
@@ -9,6 +9,8 @@ On `/add-plugin`, first chat after install, or when DataProduct MCP tools are mi
 
 Guide the user only. Do not ask them to type the instance URL in chat. Do not type into Cursor's Configure dialog. Do not write plugin variables or edit MCP config files.
 
+Never tell the user to open **Customize → MCP**, the MCP tab, or to click **Authenticate** / **Connect** / **Login** there. Authentication is mandatory and must start from this chat via `mcp_auth`. The user only completes login in the browser that opens.
+
 1. Tell them what an instance URL looks like, with this one example, and that they must not add `https://` or `/mcp/api/v1`:
 
    `qaiks-070226.instance.dataos.cloud`
@@ -17,6 +19,7 @@ Guide the user only. Do not ask them to type the instance URL in chat. Do not ty
    **Customize → Plugins → DataProduct MCP → Configure**
    Paste their hostname into **DataOS instance FQDN**, click **Save**, then reply here when it is saved.
 3. Stop and wait. Do not call `mcp_auth` until they confirm the save is done.
-4. After they confirm, find the DataProduct MCP namespace (name contains `dataproduct`). Read its `STATUS.md`. If auth is required or the namespace is `needsAuth` / `error` / `loading`, call `mcp_auth` with no arguments so the browser login opens.
-5. Repeat `STATUS.md` + `mcp_auth` until tools are available (namespace ready, not `fetch failed`). Then confirm the server is running.
-6. If `fetch failed` continues after a confirmed save, the hostname is wrong or the host is unreachable. Show the same example again and ask them to save the correct hostname. Do not treat this as an OAuth-password problem.
+4. After they confirm, immediately call `mcp_auth` on the DataProduct namespace (name contains `dataproduct`) with no arguments so the browser login opens. Authenticate only that one server. Tell them a browser window will open and they should finish login there. Do not send them to the MCP tab.
+5. If `mcp_auth` is not in the tool list, look up the DataProduct namespace again. If a DataProduct tool or status returns an authentication/authorization error, call `mcp_auth` immediately. Do not fall back to "click Authenticate in settings."
+6. Repeat `STATUS.md` + `mcp_auth` until tools are available (namespace ready, not `fetch failed`). Then confirm the server is running.
+7. If `fetch failed` continues after a confirmed save, the hostname is wrong or the host is unreachable. Show the same example again and ask them to save the correct hostname. Do not treat this as an OAuth-password problem.

@@ -1,7 +1,7 @@
 {
   "name": "dataproduct-mcp-11",
   "displayName": "DataProduct MCP",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Connect Cursor to a user-selected DataOS DataProduct MCP instance through OAuth.",
   "author": {
     "name": "Akshayram11"

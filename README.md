@@ -28,7 +28,9 @@ This repository is a Cursor marketplace plus an optional install page.
 5. In Agent chat you can also run
    `/add-plugin dataproduct-mcp@https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
    The agent shows one example hostname, guides you to save yours in
-   **Configure**, then starts OAuth after you confirm it is saved.
+   **Configure**, then starts OAuth from chat after you confirm it is
+   saved. Complete login in the browser that opens. You do not need the
+   MCP tab Authenticate button.
 6. FQDN is hostname only, for example
    `your-instance.instance.dataos.cloud`. Do not include `https://` or
    `/mcp/api/v1`.
