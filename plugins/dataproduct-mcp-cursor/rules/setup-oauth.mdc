@@ -1,13 +1,13 @@
 ---
-description: After DataProduct MCP install, guide Configure save, then start OAuth from chat with mcp_auth. Never send the user to the MCP tab Authenticate button.
+description: After DataProduct MCP install, guide Configure save and enable the MCP, then start OAuth from chat with mcp_auth. Never send the user to the MCP tab Authenticate button.
 alwaysApply: true
 ---
 
 # DataProduct MCP setup
 
-On `/add-plugin`, first chat after install, or when DataProduct MCP tools are missing / `fetch failed` / OAuth did not complete:
+On `/add-plugin`, first chat after install, or when DataProduct MCP tools are missing / `fetch failed` / OAuth did not complete / the MCP shows **Disabled**:
 
-Guide the user only. Do not ask them to type the instance URL in chat. Do not type into Cursor's Configure dialog. Do not write plugin variables or edit MCP config files.
+Guide the user only. Do not ask them to type the instance URL in chat. Do not type into Cursor's Configure dialog. Do not write plugin variables or edit MCP config files. There is no `enabled` field in `mcp.json`; the user must toggle the MCP on.
 
 Never tell the user to open **Customize → MCP**, the MCP tab, or to click **Authenticate** / **Connect** / **Login** there. Authentication is mandatory and must start from this chat via `mcp_auth`. The user only completes login in the browser that opens.
 
@@ -15,11 +15,13 @@ Never tell the user to open **Customize → MCP**, the MCP tab, or to click **Au
 
    `qaiks-070226.instance.dataos.cloud`
 
-2. Give this exact Configure path:
-   **Customize → Plugins → DataProduct MCP → Configure**
-   Paste their hostname into **DataOS instance FQDN**, click **Save**, then reply here when it is saved.
-3. Stop and wait. Do not call `mcp_auth` until they confirm the save is done.
+2. Give this exact path on the plugin page:
+   **Customize → Plugins → DataProduct MCP**
+   - Click **Configure**, paste their hostname into **DataOS instance FQDN**, click **Save**.
+   - On the same plugin page, turn MCP **`dataproduct-mcp-11`** from **Disabled** to **Enabled**. A Disabled MCP does not load in chat, so `mcp_auth` will be missing.
+   Then reply here when the hostname is saved **and** the MCP shows Enabled.
+3. Stop and wait. Do not call `mcp_auth` until they confirm both save and Enabled.
 4. After they confirm, immediately call `mcp_auth` on the DataProduct namespace (name contains `dataproduct`) with no arguments so the browser login opens. Authenticate only that one server. Tell them a browser window will open and they should finish login there. Do not send them to the MCP tab.
-5. If `mcp_auth` is not in the tool list, look up the DataProduct namespace again. If a DataProduct tool or status returns an authentication/authorization error, call `mcp_auth` immediately. Do not fall back to "click Authenticate in settings."
+5. If `mcp_auth` is not in the tool list, the MCP is still Disabled or not loaded. Ask them to enable **`dataproduct-mcp-11`** on **Customize → Plugins → DataProduct MCP** and reply again. Do not fall back to "click Authenticate in settings."
 6. Repeat `STATUS.md` + `mcp_auth` until tools are available (namespace ready, not `fetch failed`). Then confirm the server is running.
-7. If `fetch failed` continues after a confirmed save, the hostname is wrong or the host is unreachable. Show the same example again and ask them to save the correct hostname. Do not treat this as an OAuth-password problem.
+7. If `fetch failed` continues after a confirmed save and Enabled, the hostname is wrong or the host is unreachable. Show the same example again and ask them to save the correct hostname. Do not treat this as an OAuth-password problem.

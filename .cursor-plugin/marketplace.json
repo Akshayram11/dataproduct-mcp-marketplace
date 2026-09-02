@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "DataProduct plugin for DataOS MCP access",
-    "version": "0.2.5"
+    "version": "0.2.6"
   },
   "plugins": [
     {
       "name": "dataproduct-mcp",
       "source": "plugins/dataproduct-mcp-cursor",
       "description": "Connect Cursor to a DataOS DataProduct MCP instance through OAuth.",
-      "version": "0.2.5",
+      "version": "0.2.6",
       "author": {
         "name": "Akshayram11"
       },
