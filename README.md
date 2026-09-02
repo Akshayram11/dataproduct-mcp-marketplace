@@ -66,12 +66,22 @@ you want the instance URL prompt first.
 
 ## Codex / ChatGPT (Add plugin marketplace)
 
-The Codex plugin lives at [`plugins/codex`](plugins/codex). In the **Add plugin marketplace** dialog:
+The Codex plugin lives at [`plugins/codex`](plugins/codex). Codex looks for
+`.agents/plugins/marketplace.json` at the **marketplace root**, not only inside
+`plugins/codex`. In the **Add plugin marketplace** dialog:
 
 1. **Source:** `https://github.com/Akshayram11/dataproduct-mcp-marketplace`
    or `Akshayram11/dataproduct-mcp-marketplace`
 2. **Git ref:** `main`
-3. **Sparse paths:** `plugins/codex`
+3. **Sparse paths:** leave empty, **or** put both of these lines:
+
+   ```text
+   .agents/plugins
+   plugins/codex
+   ```
+
+   Do not use only `plugins/codex`. That checkout has no marketplace manifest
+   at the root, so Codex shows `marketplace root does not contain a supported manifest`.
 4. Click **Add marketplace**.
 5. Install **DataProduct MCP**. Auth policy is `ON_INSTALL` (OAuth, no bearer token).
 6. The agent shows one example hostname (`qaiks-070226.instance.dataos.cloud`).
