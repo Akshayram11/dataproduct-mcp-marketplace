@@ -1,22 +1,28 @@
 {
   "name": "dataproduct-mcp",
-  "version": "0.1.0",
+  "displayName": "DataProduct MCP",
+  "version": "0.2.0",
   "description": "Connect Cursor to a user-selected DataOS DataProduct MCP instance through OAuth.",
   "author": {
-    "name": "Akshayram11",
-    "url": "https://github.com/Akshayram11"
+    "name": "Akshayram11"
   },
   "homepage": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
   "repository": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
   "license": "MIT",
+  "keywords": [
+    "dataos",
+    "dataproduct",
+    "mcp",
+    "oauth"
+  ],
   "mcpServers": "mcp.json",
   "variables": {
     "type": "object",
     "properties": {
       "DATAOS_INSTANCE_FQDN": {
         "type": "string",
-        "title": "DataOS instance FQDN",
-        "description": "Required full hostname only, for example sawaniks-081726.instance.dataos.cloud",
+        "title": "Instance URL",
+        "description": "Required instance URL hostname only, for example your-instance.instance.dataos.cloud",
         "minLength": 1
       }
     },

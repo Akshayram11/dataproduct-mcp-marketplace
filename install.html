@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add DataProduct MCP to Cursor</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f0f10;
+      --card: #1a1a1c;
+      --border: #2e2e32;
+      --text: #f3f3f4;
+      --muted: #9a9aa0;
+      --accent: #ffffff;
+      --danger: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .card {
+      width: min(440px, calc(100vw - 32px));
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    h1 { margin: 0 0 8px; font-size: 20px; }
+    p { margin: 0 0 20px; color: var(--muted); line-height: 1.45; font-size: 14px; }
+    label { display: block; font-size: 13px; margin-bottom: 8px; }
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #111113;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+    input:focus { outline: 2px solid #4b4b52; }
+    .preview {
+      margin: 12px 0 20px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
+    }
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: var(--accent);
+      color: #111;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .error { color: var(--danger); font-size: 13px; min-height: 18px; margin: 8px 0 0; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Add DataProduct MCP</h1>
+    <p>Enter your DataOS instance URL. Cursor will install the MCP and start OAuth. No token is stored here.</p>
+    <label for="fqdn">Instance URL</label>
+    <input id="fqdn" type="text" autocomplete="off" spellcheck="false"
+      placeholder="your-instance.instance.dataos.cloud" />
+    <p class="error" id="error"></p>
+    <p class="preview" id="preview">https://&lt;fqdn&gt;/mcp/api/v1</p>
+    <button id="add" type="button" disabled>Add to Cursor</button>
+  </main>
+  <script>
+    const input = document.getElementById("fqdn");
+    const preview = document.getElementById("preview");
+    const error = document.getElementById("error");
+    const button = document.getElementById("add");
+
+    function normalizeFqdn(value) {
+      const trimmed = value.trim();
+      if (!trimmed) return "";
+      try {
+        if (/^https?:\/\//i.test(trimmed)) {
+          return new URL(trimmed).hostname;
+        }
+      } catch {
+        return "";
+      }
+      return trimmed.replace(/^\/+|\/+$/g, "").split("/")[0];
+    }
+
+    function isFqdn(value) {
+      return /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+$/i.test(value);
+    }
+
+    function mcpUrl(fqdn) {
+      return `https://${fqdn}/mcp/api/v1`;
+    }
+
+    function encodeConfig(url) {
+      const json = JSON.stringify({ url });
+      return btoa(unescape(encodeURIComponent(json)));
+    }
+
+    function refresh() {
+      const fqdn = normalizeFqdn(input.value);
+      if (!input.value.trim()) {
+        error.textContent = "";
+        preview.textContent = "https://<fqdn>/mcp/api/v1";
+        button.disabled = true;
+        return;
+      }
+      if (!isFqdn(fqdn)) {
+        error.textContent = "Enter the instance URL hostname only, for example your-instance.instance.dataos.cloud";
+        preview.textContent = "https://<fqdn>/mcp/api/v1";
+        button.disabled = true;
+        return;
+      }
+      error.textContent = "";
+      preview.textContent = mcpUrl(fqdn);
+      button.disabled = false;
+    }
+
+    function addToCursor() {
+      const fqdn = normalizeFqdn(input.value);
+      if (!isFqdn(fqdn)) return;
+      const url = mcpUrl(fqdn);
+      const config = encodeConfig(url);
+      const httpsLink = `https://cursor.com/install-mcp?name=dataproduct-mcp&config=${encodeURIComponent(config)}`;
+      const deeplink = `cursor://anysphere.cursor-deeplink/mcp/install?name=dataproduct-mcp&config=${encodeURIComponent(config)}`;
+      window.location.href = deeplink;
+      window.setTimeout(() => {
+        window.location.href = httpsLink;
+      }, 400);
+    }
+
+    input.addEventListener("input", refresh);
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") addToCursor();
+    });
+    button.addEventListener("click", addToCursor);
+    refresh();
+  </script>
+</body>
+</html>
