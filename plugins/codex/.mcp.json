@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dataproduct-mcp": {
+      "type": "http",
+      "url": "https://${DATAOS_INSTANCE_FQDN}/mcp/api/v1",
+      "auth": "oauth"
+    }
+  }
+}

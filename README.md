@@ -64,25 +64,21 @@ of the install link:
 Cursor does not auto-open that Configure dialog on Add. Use `install.html` when
 you want the instance URL prompt first.
 
-## Codex
+## Codex / ChatGPT (Add plugin marketplace)
 
-Codex still uses [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
-and the plugin under `plugins/dataproduct-mcp/.codex-plugin/`.
+The Codex plugin lives at [`plugins/codex`](plugins/codex). In the **Add plugin marketplace** dialog:
 
-### Guided setup
+1. **Source:** `https://github.com/Akshayram11/dataproduct-mcp-marketplace`
+   or `Akshayram11/dataproduct-mcp-marketplace`
+2. **Git ref:** `main`
+3. **Sparse paths:** `plugins/codex`
+4. Click **Add marketplace**.
+5. Install **DataProduct MCP**. Auth policy is `ON_INSTALL` (OAuth, no bearer token).
+6. The agent shows one example hostname (`qaiks-070226.instance.dataos.cloud`).
+   Do not include `https://` or `/mcp/api/v1`.
+7. Save that hostname on the plugin, enable **dataproduct-mcp** if it is
+   disabled, then complete OAuth in the browser Codex opens.
 
-Windows PowerShell:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\setup-windows.ps1
-```
-
-macOS or Linux:
-
-```bash
-chmod +x ./scripts/setup-macos-linux.sh
-./scripts/setup-macos-linux.sh
-```
-
-Both scripts ask for the DataProduct MCP URL and hide the bearer token while it
-is typed. Fully quit and reopen Codex after setup.
+Codex uses [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
+and [`plugins/codex/.codex-plugin/plugin.json`](plugins/codex/.codex-plugin/plugin.json).
+The MCP URL is `https://<hostname>/mcp/api/v1`.

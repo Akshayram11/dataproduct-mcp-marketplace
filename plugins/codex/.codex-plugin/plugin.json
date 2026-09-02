@@ -1,0 +1,33 @@
+{
+  "name": "codex",
+  "version": "0.2.6",
+  "description": "Connect Codex to a user-selected DataOS DataProduct MCP instance through OAuth.",
+  "author": {
+    "name": "Akshayram11",
+    "url": "https://github.com/Akshayram11"
+  },
+  "homepage": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
+  "repository": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
+  "license": "MIT",
+  "keywords": [
+    "dataos",
+    "dataproduct",
+    "mcp",
+    "oauth"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "DataProduct MCP",
+    "shortDescription": "Use DataProduct MCP in Codex through OAuth.",
+    "longDescription": "Connect Codex to your DataOS DataProduct MCP instance. Save a hostname, enable the plugin, then complete OAuth in the browser.",
+    "developerName": "Akshayram11",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Explore available DataProduct tools",
+      "Help me query the DataProduct MCP server"
+    ]
+  }
+}
