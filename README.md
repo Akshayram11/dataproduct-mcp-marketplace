@@ -1,8 +1,59 @@
-# DataProduct MCP Codex Plugin
+# DataProduct MCP Marketplace
 
-This marketplace provides a Codex plugin for the DataProduct MCP server.
+Install the DataProduct MCP into Cursor (and Codex) against your own DataOS
+instance. The Cursor plugin is OAuth-based: you enter the instance FQDN, then
+Cursor opens the browser login. No bearer token is stored in this repo.
 
-## Configuration
+After install, Cursor writes a server entry equivalent to:
+
+```json
+{
+  "dataproduct-mcp": {
+    "url": "https://YOUR-INSTANCE.instance.dataos.cloud/mcp/api/v1"
+  }
+}
+```
+
+## Cursor
+
+This repository is a Cursor team/personal marketplace. Cursor discovers it from
+[`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json).
+
+### Import from GitHub
+
+1. In Cursor, open **Customize** (or the marketplace panel).
+2. Open the **Personal** tab and click **+ Add Marketplace**.
+3. Choose **Import from GitHub**.
+4. Paste `https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
+5. The **dataos** marketplace should appear with the **DataProduct MCP** plugin.
+6. Click **Install**.
+7. When prompted, enter your instance FQDN only, for example:
+
+   ```text
+   sawaniks-081726.instance.dataos.cloud
+   ```
+
+   Do not include `https://` or `/mcp/api/v1`. Cursor builds:
+
+   `https://<INSTANCE_FQDN>/mcp/api/v1`
+
+8. Complete the OAuth browser prompt, then reload the window if tools do not
+   appear immediately.
+
+If you previously imported this repo, remove that marketplace (and any
+`dataproduct-mcp` server that was installed without an FQDN prompt) before
+importing again. Older imports used the Codex `.mcp.json` file, which had a
+hardcoded URL and never asked for your instance.
+
+### Configure later
+
+If install skipped the prompt, open the plugin and use **Configure**. Set
+**Instance FQDN**, then reconnect so Cursor can start OAuth.
+
+## Codex
+
+Codex still uses [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)
+and the plugin under `plugins/dataproduct-mcp/.codex-plugin/`.
 
 ### Guided setup
 
