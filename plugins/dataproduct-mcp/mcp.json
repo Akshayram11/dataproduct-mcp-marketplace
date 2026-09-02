@@ -1,7 +1,0 @@
-{
-  "mcpServers": {
-    "dataproduct-mcp": {
-      "url": "https://${INSTANCE_FQDN}/mcp/api/v1"
-    }
-  }
-}

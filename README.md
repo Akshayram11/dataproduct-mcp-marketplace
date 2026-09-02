@@ -17,7 +17,11 @@ After install, Cursor writes a server entry equivalent to:
 ## Cursor
 
 This repository is a Cursor team/personal marketplace. Cursor discovers it from
-[`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json).
+[`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json) and loads
+only the dedicated Cursor package at `plugins/dataproduct-mcp-cursor`. That
+keeps Codex's `.mcp.json` out of the Cursor install path, matching the
+[tmdc-dataos-marketplace](https://github.com/Akshayram11/tmdc-dataos-marketplace)
+layout.
 
 ### Import from GitHub
 
@@ -25,9 +29,9 @@ This repository is a Cursor team/personal marketplace. Cursor discovers it from
 2. Open the **Personal** tab and click **+ Add Marketplace**.
 3. Choose **Import from GitHub**.
 4. Paste `https://github.com/Akshayram11/dataproduct-mcp-marketplace`.
-5. The **dataos** marketplace should appear with the **DataProduct MCP** plugin.
+5. The **dataproduct** marketplace should appear with the **dataproduct-mcp** plugin.
 6. Click **Install**.
-7. When prompted, enter your instance FQDN only, for example:
+7. When prompted, enter your full instance FQDN only, for example:
 
    ```text
    sawaniks-081726.instance.dataos.cloud
@@ -35,7 +39,7 @@ This repository is a Cursor team/personal marketplace. Cursor discovers it from
 
    Do not include `https://` or `/mcp/api/v1`. Cursor builds:
 
-   `https://<INSTANCE_FQDN>/mcp/api/v1`
+   `https://<DATAOS_INSTANCE_FQDN>/mcp/api/v1`
 
 8. Complete the OAuth browser prompt, then reload the window if tools do not
    appear immediately.
@@ -48,7 +52,7 @@ hardcoded URL and never asked for your instance.
 ### Configure later
 
 If install skipped the prompt, open the plugin and use **Configure**. Set
-**Instance FQDN**, then reconnect so Cursor can start OAuth.
+**DataOS instance FQDN**, then reconnect so Cursor can start OAuth.
 
 ## Codex
 
