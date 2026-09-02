@@ -15,6 +15,9 @@ Ask for the FQDN in this chat. Do not skip that question. Do not invent a hostna
    code --add-mcp '{"name":"dataproduct-mcp","type":"http","url":"https://<their-fqdn>/mcp/api/v1"}'
    ```
 
+   Use the real hostname in the URL. Never write `${DATAOS_INSTANCE_FQDN}` or
+   `${input:DATAOS_INSTANCE_FQDN}` into user config.
+
    If `code` is missing, write workspace `.vscode/mcp.json`:
 
    ```json

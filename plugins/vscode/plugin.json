@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "dataproduct-mcp",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Connect VS Code to a DataOS DataProduct MCP instance through OAuth. After install, ask for the FQDN in chat, add the MCP server, then start OAuth.",
   "author": {
     "name": "Akshayram11"
