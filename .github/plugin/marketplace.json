@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "DataProduct plugin for DataOS MCP access in VS Code",
-    "version": "0.3.1"
+    "version": "0.3.2"
   },
   "plugins": [
     {
       "name": "dataproduct-mcp",
-      "description": "Connect VS Code Copilot to a DataOS DataProduct MCP instance through OAuth. After install, ask for the FQDN in chat.",
-      "version": "0.3.1",
+      "description": "Connect VS Code Copilot to a DataOS DataProduct MCP instance through OAuth. After install, ask only for the hostname in chat.",
+      "version": "0.3.2",
       "source": "./plugins/vscode",
       "author": {
         "name": "Akshayram11"

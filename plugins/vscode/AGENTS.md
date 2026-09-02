@@ -1,39 +1,24 @@
 # DataProduct MCP setup (VS Code)
 
-On first chat after install, `/add-plugin`, or when DataProduct MCP tools are missing:
+On first chat after install, or when DataProduct MCP tools are missing:
 
-Ask for the FQDN in this chat. Do not skip that question. Do not invent a hostname. Do not send them to Command Palette first.
+The user types only a hostname. Never ask them to edit JSON, open configuration, or paste a full URL.
 
-1. Ask the user to reply with their DataOS instance FQDN only. Hostname, no `https://`, no `/mcp/api/v1`. Show this one example:
+1. Ask once for the DataOS instance FQDN. They should reply with only this shape:
 
    `qaiks-070226.instance.dataos.cloud`
 
-2. Stop and wait until they send a hostname.
-3. After they send it, add the MCP from this chat (do not ask them to click Add Server):
+   Reject `https://` and `/mcp/api/v1`. Do not invent a hostname.
+
+2. Stop and wait for that hostname.
+3. You build the URL and register the server. Do not send them to Command Palette or Open Configuration.
 
    ```bash
    code --add-mcp '{"name":"dataproduct-mcp","type":"http","url":"https://<their-fqdn>/mcp/api/v1"}'
    ```
 
-   Use the real hostname in the URL. Never write `${DATAOS_INSTANCE_FQDN}` or
-   `${input:DATAOS_INSTANCE_FQDN}` into user config.
+   If `code` is missing, write `.vscode/mcp.json` yourself with that same concrete `https://<their-fqdn>/mcp/api/v1` URL. Never write `${DATAOS_INSTANCE_FQDN}` or `${input:...}`.
 
-   If `code` is missing, write workspace `.vscode/mcp.json`:
-
-   ```json
-   {
-     "servers": {
-       "dataproduct-mcp": {
-         "type": "http",
-         "url": "https://<their-fqdn>/mcp/api/v1"
-       }
-     }
-   }
-   ```
-
-4. Tell them VS Code may open a browser for OAuth. If no browser opens, tell them:
+4. If a browser login opens, they complete it. If it does not, tell them:
 
    **MCP: List Servers → dataproduct-mcp → Authenticate**
-
-   Do not ask for the FQDN again if they already confirmed it.
-5. After they confirm login, check that DataProduct tools are available.

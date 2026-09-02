@@ -1,6 +1,6 @@
 ---
 name: connect-dataos
-description: After DataProduct MCP install in VS Code, ask for the DataOS FQDN in chat, add the HTTP MCP server, then start OAuth. Use on first chat, when tools are missing, or when the user mentions DataProduct / DataOS / add-plugin.
+description: After DataProduct MCP install in VS Code, ask the user only for a hostname like qaiks-070226.instance.dataos.cloud, then register https://<fqdn>/mcp/api/v1 yourself. Use on first chat or when DataProduct tools are missing.
 ---
 
-Follow [AGENTS.md](../../AGENTS.md). Ask for the FQDN in chat, then run `code --add-mcp` (or write `.vscode/mcp.json`). If OAuth does not start, send them to **MCP: List Servers → dataproduct-mcp → Authenticate**.
+Follow [AGENTS.md](../../AGENTS.md). The user sends only the hostname. You add the MCP. Do not ask them to edit config or open Command Palette first.
