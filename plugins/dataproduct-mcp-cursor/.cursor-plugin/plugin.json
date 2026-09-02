@@ -1,5 +1,5 @@
 {
-  "name": "dataproduct-mcp",
+  "name": "dataproduct-mcp-11",
   "displayName": "DataProduct MCP",
   "version": "0.2.0",
   "description": "Connect Cursor to a user-selected DataOS DataProduct MCP instance through OAuth.",
@@ -20,6 +20,8 @@
         "minLength": 1
       }
     },
-    "required": ["DATAOS_INSTANCE_FQDN"]
+    "required": [
+      "DATAOS_INSTANCE_FQDN"
+    ]
   }
 }

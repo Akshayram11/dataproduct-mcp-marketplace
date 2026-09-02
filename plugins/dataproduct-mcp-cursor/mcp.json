@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "dataproduct-mcp": {
+    "dataproduct-mcp-11": {
       "url": "${{DATAOS_INSTANCE_FQDN}}"
     }
   }
