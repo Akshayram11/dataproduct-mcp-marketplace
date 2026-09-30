@@ -1,6 +1,6 @@
 {
   "name": "dataos-products",
-  "version": "0.1.0+codex.20260930101523",
+  "version": "0.1.0+codex.20260930101732",
   "description": "Connect Codex to a customer DataOS Products MCP instance with OAuth.",
   "author": {
     "name": "Akshayram11",

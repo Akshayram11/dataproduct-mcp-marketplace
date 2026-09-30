@@ -18,13 +18,13 @@ codex plugin marketplace add https://github.com/Akshayram11/dataproduct-mcp-mark
 codex plugin add dataos-products@dataproduct
 ```
 
-Then start a new Codex task and say **“Connect my DataOS Products instance.”** Give the agent your hostname when it asks. The plugin's `dataos-connect` skill checks the hostname, runs `codex mcp add`, and then runs `codex mcp login dataos-products`. Complete OAuth in the browser if that command opens it.
+Then start a new Codex task and say **“Connect my DataOS Products instance.”** Give the agent your hostname when it asks. The plugin's `dataos-connect` skill checks the hostname, runs `codex mcp add dataproduct-mcp --url https://<hostname>/mcp/api/v1`, and then runs `codex mcp login dataproduct-mcp`. Complete OAuth in the browser if that command opens it.
 
 The marketplace file is [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json), and the plugin is in [`plugins/dataos-products`](plugins/dataos-products). This is a Codex marketplace plugin with an interactive setup skill; it intentionally contains no fixed MCP URL that would connect every customer to the sandbox.
 
 ## If OAuth does not start
 
-`codex mcp add` only saves the URL. Run `codex mcp login dataos-products` to start browser OAuth. If it reports `No authorization support detected`, the CLI did not find a usable OAuth configuration for that endpoint, so this plugin cannot force an automatic redirect. Codex computer use cannot operate the app's own Authenticate button. As a temporary manual route, use **Plugins → MCPs → Servers → dataos-products → Authenticate** in the ChatGPT desktop app. Keep the server enabled, complete browser sign-in, and verify its tools load. The app's Authenticate action may work even when CLI discovery fails.
+`codex mcp add` only saves the URL. Run `codex mcp login dataproduct-mcp` to start browser OAuth. If it reports `No authorization support detected`, the CLI did not find a usable OAuth configuration for that endpoint, so this plugin cannot force an automatic redirect. Codex computer use cannot operate the app's own Authenticate button. As a temporary manual route, use **Plugins → MCPs → Servers → dataproduct-mcp → Authenticate** in the ChatGPT desktop app. Keep the server enabled, complete browser sign-in, and verify its tools load. The app's Authenticate action may work even when CLI discovery fails.
 
 If the app's Authenticate action also fails, the DataOS server team should check the following at that customer instance:
 
