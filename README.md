@@ -24,14 +24,16 @@ The marketplace file is [`.agents/plugins/marketplace.json`](.agents/plugins/mar
 
 ## If OAuth does not start
 
-`codex mcp add` only saves the URL. It does not prove that the MCP server supports OAuth. If `codex mcp login dataos-products` reports `No authorization support detected`, the DataOS server team should check the following at that customer instance:
+`codex mcp add` only saves the URL. If `codex mcp login dataos-products` reports `No authorization support detected`, use **Plugins → MCPs → Servers → dataos-products → Authenticate** in the ChatGPT desktop app. The setup skill will try to open this action when desktop UI control is available; otherwise it will point you to the button. Keep the server enabled, complete browser sign-in, and then verify its tools load. This UI action can work even when CLI OAuth discovery fails.
+
+If the app's Authenticate action also fails, the DataOS server team should check the following at that customer instance:
 
 1. An unauthenticated MCP request returns `401 Unauthorized` with a `WWW-Authenticate: Bearer` header that points to the protected-resource metadata URL.
 2. The protected-resource metadata is publicly reachable and contains `resource` plus an `authorization_servers` list with the real issuer URL.
 3. The issuer publishes OAuth authorization-server or OpenID discovery metadata, including authorization and token endpoints, PKCE `S256`, and an OpenAI-compatible client registration method.
 4. Cloudflare or another edge layer permits the MCP and discovery requests from Codex. A Cloudflare `403` can block discovery before the DataOS application responds.
 
-The browser sign-in cannot start until discovery works. Keep the saved MCP URL while the server team fixes the issue, then retry login once. See [OpenAI's authentication guide](https://developers.openai.com/plugins/build/auth) and the [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization).
+Automatic OAuth linking during tool use needs the server's protected-resource metadata, per-tool `securitySchemes`, and an authentication challenge in the tool result. The local setup skill cannot itself press the app's Authenticate button. See [OpenAI's authentication guide](https://developers.openai.com/plugins/build/auth) and the [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization).
 
 ## Scope
 
