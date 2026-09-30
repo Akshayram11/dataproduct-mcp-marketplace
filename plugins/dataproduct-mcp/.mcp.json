@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "dataproduct-mcp": {
-      "url": "https://leidos-sandbox.instance.dataos.cloud/dataproduct-mcp/api/v1",
-      "bearer_token_env_var": "DATAPRODUCT_MCP_TOKEN"
-    }
-  }
-}

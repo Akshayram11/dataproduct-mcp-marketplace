@@ -1,20 +1,20 @@
 {
   "name": "dataproduct",
   "interface": {
-    "displayName": "DataProduct"
+    "displayName": "DataOS Products"
   },
   "plugins": [
     {
-      "name": "dataproduct-mcp",
+      "name": "dataos-products",
       "source": {
         "source": "local",
-        "path": "./plugins/codex"
+        "path": "./plugins/dataos-products"
       },
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Developer Tools"
+      "category": "Data & Analytics"
     }
   ]
 }

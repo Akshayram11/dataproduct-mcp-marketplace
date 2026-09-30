@@ -1,0 +1,20 @@
+{
+  "name": "dataos-products",
+  "version": "0.1.0",
+  "description": "Connect Codex to a customer DataOS Products MCP instance with OAuth.",
+  "author": {
+    "name": "Akshayram11",
+    "url": "https://github.com/Akshayram11"
+  },
+  "repository": "https://github.com/Akshayram11/dataproduct-mcp-marketplace",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DataOS Products",
+    "shortDescription": "Connect your DataOS instance through OAuth.",
+    "longDescription": "Enter your DataOS instance hostname once in chat. Codex registers its MCP endpoint and starts OAuth sign-in.",
+    "developerName": "Akshayram11",
+    "category": "Data & Analytics",
+    "capabilities": ["Interactive"],
+    "defaultPrompt": "Connect my DataOS Products instance."
+  }
+}
